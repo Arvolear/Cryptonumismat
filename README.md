@@ -2,4 +2,4 @@ Cryptonumismat is an Ethereum based online "game" where you can buy all over the
 
 Own assets that nobody can duplicate or destroy to become the Greatest and the Richest Numismat!
 
-https://cryptomumismat.com
+https://cryptonumismat.com
