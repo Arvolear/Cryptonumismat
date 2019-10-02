@@ -1,0 +1,271 @@
+pragma solidity ^0.4.8;
+
+import "github.com/Arachnid/solidity-stringutils/src/strings.sol";
+
+contract CryptoNumismat 
+{
+    
+    using strings for *;
+    
+    address owner;
+
+    struct Buy 
+    {
+        uint256 cardIndex;
+        address seller;
+        uint minValue;  // in wei
+        uint intName;
+        string name;
+    }
+    
+    struct UnitedBuy 
+    {
+        uint256 cardIndex;
+        address seller;
+        uint intName;
+        string name;
+    }
+
+    uint256[] private allCards;
+    mapping (uint256 => Buy) public cardsForSale;
+    mapping (uint256 => UnitedBuy) public UnitedCardsForSale;
+    mapping (address => bool) public admins;
+    mapping (address => string) public nicknames;
+
+    event Assign(uint256 indexed _cardIndex, address indexed _seller, uint256 _value, uint _intName, string _name);
+    event Transfer(address indexed _from, address indexed _to, uint256 _cardIndex);
+    
+    function CryptoNumismat() public payable 
+    {
+        owner = msg.sender;
+        admins[owner] = true;
+    }
+    
+    modifier onlyOwner() 
+    {
+        require(msg.sender == owner);
+        _;
+    }
+    
+    modifier onlyAdmins() 
+    {
+        require(admins[msg.sender]);
+        _;
+    }
+    
+    function setOwner(address _owner) onlyOwner() public 
+    {
+        owner = _owner;
+    }
+    
+    function addAdmin(address _admin) onlyOwner() public
+    {
+        admins[_admin] = true;
+    }
+    
+    function removeAdmin(address _admin) onlyOwner() public
+    {
+        delete admins[_admin];
+    }
+    
+    function withdrawAll() onlyOwner() public 
+    {
+        owner.transfer(this.balance);
+    }
+
+    function withdrawAmount(uint256 _amount) onlyOwner() public 
+    {
+        require(_amount <= this.balance);
+        
+        owner.transfer(_amount);
+    }
+    
+    function name() public constant returns(string)
+    {
+        return "cryptonumismat";
+    }
+    
+    function symbol() public constant returns(string)
+    {
+        return "FIAT";
+    }
+    
+    function totalSupply() public constant returns(uint256)
+    {
+        return 1000;   
+    }
+    
+    function balanceOf(address _ownAddress) public constant returns(uint)
+    {
+        uint counter = 0;
+        for (uint i = 1; i <= allCards.length; i++)
+        {
+            if (cardsForSale[i].seller == _ownAddress)
+                counter++;
+        }
+        
+        return counter;
+    }
+    
+    function ownerOf(uint256 _cardIndex) public constant returns(address)
+    {
+        require(cardsForSale[_cardIndex].seller != address(0));
+        require(cardsForSale[_cardIndex].cardIndex != 0);
+        
+        return cardsForSale[_cardIndex].seller;
+    }
+    
+    /// _type == "Common"
+    /// _type == "United"
+
+    function addCard(string _type, uint _intName, string _name, uint256 _cardIndex, uint256 _value, address _ownAddress) public onlyAdmins()
+    {
+        require(_cardIndex <= 1000);
+        require(_cardIndex > 0);
+        
+        require(cardsForSale[_cardIndex].cardIndex != _cardIndex);
+        require(UnitedCardsForSale[_intName].intName != _intName);
+        
+        allCards.push(_cardIndex);
+        
+        address seller = _ownAddress;
+        uint256 _value2 = (_value * 1000000000);
+        
+        if (strings.equals(_type.toSlice(), "Common".toSlice()))
+        {
+            cardsForSale[_cardIndex] = Buy(_cardIndex, seller, _value2, _intName, _name);
+            Assign(_cardIndex, seller, _value2, _intName, _name);
+        }
+        else if (strings.equals(_type.toSlice(), "United".toSlice()))
+        {
+            UnitedCardsForSale[_intName] = UnitedBuy(_cardIndex, seller, _intName, _name);
+            cardsForSale[_cardIndex] = Buy(_cardIndex, seller, _value2,  _intName, _name);
+            Assign(_cardIndex, seller, _value2, _intName, _name);
+        }
+    }
+    
+    function displayCard(uint256 _cardIndex) public constant returns(uint256, address, uint256, uint, string) 
+    {
+        require(_cardIndex <= 1000);
+        require(_cardIndex > 0);
+        
+        require (cardsForSale[_cardIndex].cardIndex == _cardIndex);
+            
+        return(cardsForSale[_cardIndex].cardIndex, 
+        cardsForSale[_cardIndex].seller,
+        cardsForSale[_cardIndex].minValue,
+        cardsForSale[_cardIndex].intName,
+        cardsForSale[_cardIndex].name);
+    }
+    
+    function setNick(string _newNick) public
+    {
+        nicknames[msg.sender] = _newNick;      
+    }
+    
+    function displayNick(address _owner) public constant returns(string)
+    {
+        return nicknames[_owner];
+    }
+    
+    
+    uint256 private limit1 = 0.05 ether;
+    uint256 private limit2 = 0.5 ether;
+    uint256 private limit3 = 5 ether;
+    uint256 private limit4 = 50 ether;
+    
+    function calculateNextPrice(uint256 _startPrice) public constant returns (uint256 _finalPrice)
+    {
+        if (_startPrice < limit1)
+            _startPrice =  _startPrice * 10 / 4;
+        else if (_startPrice < limit2)
+            _startPrice =  _startPrice * 10 / 5;
+        else if (_startPrice < limit3)
+            _startPrice =  _startPrice * 10 / 6;
+        else if (_startPrice < limit4)
+            _startPrice =  _startPrice * 10 / 7;
+        else
+            _startPrice =  _startPrice * 10 / 8;
+            
+        return (_startPrice / 1000000) * 1000000;
+    }
+    
+    function calculateDevCut(uint256 _startPrice) public constant returns (uint256 _cut)
+    {
+        if (_startPrice < limit2)
+            _startPrice =  _startPrice * 5 / 100;
+        else if (_startPrice < limit3)
+            _startPrice =  _startPrice * 4 / 100;
+        else if (_startPrice < limit4)
+            _startPrice =  _startPrice * 3 / 100;
+        else
+            _startPrice =  _startPrice * 2 / 100;
+            
+        return (_startPrice / 1000000) * 1000000;
+    }
+    
+    function transfer(address _to, uint256 _cardIndex) public payable
+    {
+        require(_cardIndex <= 1000);
+        require(_cardIndex > 0);
+        require(cardsForSale[_cardIndex].cardIndex == _cardIndex);
+        //require(cardsForSale[_cardIndex].seller != msg.sender);
+        require(msg.sender != address(0));
+        //require(msg.sender != owner);
+        require(cardsForSale[_cardIndex].minValue > 0);
+        
+        address _buyer = msg.sender;
+        address _seller = cardsForSale[_cardIndex].seller;
+        string _name = cardsForSale[_cardIndex].name;
+        uint _intName = cardsForSale[_cardIndex].intName;
+        
+        address _UnitedOwner = UnitedCardsForSale[_intName].seller;
+        
+        uint256 _price = cardsForSale[_cardIndex].minValue;
+        
+        uint256 _nextPrice = calculateNextPrice(_price);
+        uint256 _devCut = calculateDevCut(_price);
+        
+        uint256 _totalPrice = _price - _devCut - (_devCut / 4);
+        uint256 _extra = msg.value - _price;
+        
+        if (cardsForSale[_cardIndex].seller != msg.sender)
+        {
+            require(msg.sender == _to);
+            require(msg.value >= cardsForSale[_cardIndex].minValue);
+        
+            _seller.transfer(_totalPrice);
+            _UnitedOwner.transfer((_devCut / 4));
+        
+            if (_extra > 0)
+            {
+                _buyer.transfer(_extra);
+            }
+        
+            cardsForSale[_cardIndex].seller = _buyer;
+            cardsForSale[_cardIndex].minValue = _nextPrice;
+        
+            if (_cardIndex == UnitedCardsForSale[_intName].cardIndex)
+                UnitedCardsForSale[_intName].seller = _buyer;
+        
+        
+            Transfer(_seller, _buyer, _cardIndex);
+            Assign(_cardIndex, _buyer, _nextPrice, _intName, _name);////////////////////////////////
+        }
+        else 
+        {
+            require(msg.sender != _to);
+            
+            _buyer = _to;
+        
+            cardsForSale[_cardIndex].seller = _buyer;
+        
+            if (_cardIndex == UnitedCardsForSale[_intName].cardIndex)
+                UnitedCardsForSale[_intName].seller = _buyer;
+        
+        
+            Transfer(_seller, _buyer, _cardIndex);
+            Assign(_cardIndex, _buyer, cardsForSale[_cardIndex].minValue, _intName, _name);////////////////////////////////
+        }    
+    }
+}
