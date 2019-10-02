@@ -1,0 +1,220 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js" ></script>
+	<!--<script src="./node_modules/web3/dist/web3.js"></script>-->
+	<script src="./abi.js"></script>
+	<script type="text/javascript" src="./js/supermain.js"></script>
+
+	<!--<script type="text/javascript" src="./js/wweb3.js"></script>-->
+
+	<script type="text/javascript" src="./js/sort.js"></script>
+	<script src="note-filter.js"></script>
+	<script src="./esimakin/jquery.twbsPagination.min.js"></script>
+
+  <link rel="stylesheet" href="./css/stylep.css" type="text/css" media="screen">
+  <link rel="stylesheet" href="./css/cstyle.css" type="text/css" media="screen">
+	<link rel="shortcut icon" href="./favicon-black.png"/>
+
+
+	<title>CryptoNumismat</title>
+    <script type="text/javascript">
+        document.ondragstart = noselect;
+        document.onselectstart = noselect;
+        document.oncontextmenu = noselect;
+        function noselect() {return false;}
+    </script>
+  </head>
+<body style="overflow: hidden; position: relative;">
+
+	<style>
+		@media (max-width: 1000px) {
+		    #page_preloader_img {
+				top: 30%;
+			}
+		}
+	</style>
+
+  <div id="page_preloader" align="center">
+		<div id="page_preloader_img">
+		    <img src="./Rolling.gif" alt="Loading" id="Rolling">
+			<br>
+			<span style="color: #33f2e9; opacity: 0; font-family: calibri; font-size: 30px;"></span>
+		</div>
+  </div>
+
+  <div id="particles-js"></div>
+  <script src="particles.js"></script>
+  <script src="app.js"></script>
+  <script src="stats.js"></script>
+<a target="_blank" href="Bounty.html"><input type="button" value="Bounty" id="button-every"></a>
+    <div id="site">
+
+        <div id="div-header">
+            <div id="Icon">
+		        <a href="intro.html"><img src="main-icon.png" id="img-header" alt="Didn't Download"></a>
+            </div>
+            <div id="top-menu">
+	            <div>
+                  <select id="cur2">
+                      <option value="Marketplace"> MARKETPLACE </option>
+                      <option value="United"> UNITED </option>
+                      <option value="Common"> COMMON </option>
+                      <option value="Collection"> MY NOTES </option>
+                  </select>
+                </div>
+                <div>
+                    <select id="cur">
+                        <option value="Currency"> CURRENCY </option>
+                        <option value="Dollar"> DOLLAR </option>
+                        <option value="Euro"> EURO </option>
+                        <option value="BTC"> BITCOIN </option>
+                        <option value="ETH"> ETHEREUM </option>
+                      </select>
+                </div>
+
+	            <div class="div-top-menu">
+                      <a href="javascript:PopUpShowF(0)">HOW IT WORKS</a>
+                </div>
+
+                <div id="kek">
+                    <img src="Efir-colorless.png" id="img-header2" alt="Didn't Download">
+                </div>
+
+			        <input id="Nick-input" type="text" readonly>
+
+            </div>
+        </div>
+
+ 		<script type="text/javascript">
+			var Nick = document.getElementById('Nick-input');
+
+			setInterval(function()
+			{
+				var mas = [
+					"Please Hodl...",
+					"Adding Humsters to the Wheel...",
+					"Counting Ether...",
+					"Shovelling Coal Into the Server...",
+					"Locating the Required Gigapixels to Render...",
+					"Does Anyone Actually Read This?",
+					"Make Sure Nobody is Watching Your Back...",
+					"...gnidrawroF drawkcaB",
+					"Gods are Proud of You...",
+					"Loading the Progressbar...",
+					"Programmer is Sleeping, Please Wait...",
+					"Why don't You Go Outside?",
+					"Counting to 1337...",
+					"Checking Anti-Camp Radius..."
+				];
+
+				var str = mas[Math.round(Math.random() * (mas.length - 1))];
+
+				$('#page_preloader span').text(str).animate({opacity: 1}, 500);
+
+			}, 4000);
+
+    		window.addEventListener('load', function()
+			{
+				setInterval(function()
+				{
+					console.log(Nick.value);
+					if (Nick.value !== "Connecting...")
+					{
+	        			$('#page_preloader').delay(2000).fadeOut();
+						$('body').delay(2000).queue(function (next) {
+							$(this).css({overflow: 'visible'});
+							next();
+						});
+					}
+
+				}, 1000);
+			});
+		</script>
+
+        <div id="content">
+
+            <select id="select-main">
+				<option value="Oldest">Oldest</option>
+				<option value="Newest">Newest</option>
+                <option value="Ascending">Price Ascending</option>
+                <option value="Descending">Price Descending</option>
+            </select>
+
+            <div id="main-content">
+
+				<!--<script type="text/javascript" src="web3js.js"></script>-->
+
+            </div>
+
+            <div class="pagination" align="center" style="background: #303030">
+            </div>
+
+            <div style="background: #303030; width:100%; height: 30px;"></div>
+
+            <!--<script type="text/javascript" src="note-filter.js"></script>-->
+
+        </div>
+
+	    <div id="footer">
+            <a target="_blank" href="https://discord.gg/WMuAPFW" class="footer-staff">DISCORD</a>
+            <span id="gmail" class="footer-staff">cryptonumismat@gmail.com</span>
+	        <a target="_blank" href="https://etherscan.io/address/0xe22f686f95d6859a8b68f9f186d5c06256bb3407" class="footer-staff">Smart Contract</a>
+            <br>
+            <a target="_blank" href="https://web.telegram.org/#/im?p=@CryptoNumismatGroup" class="footer-staff">TELEGRAM GROUP</a>
+            <a target="_blank" href="https://web.telegram.org/#/im?p=@CryptoNumismat" class="footer-staff">TELEGRAM CHANNEL</a>
+            <br>
+            <a href="#" id="footer-href">Crypto Numismat<a>
+        </div>
+
+    </div>
+
+    <!--<div class="b-popup" id="popup">
+        <div class="b-popup-content">
+            <input type="button" value="OK" class="close-popup">
+				<br>
+                <p style="margin: 0 0 0 100px; text-align: center;">The price of each note increases with each transaction. When one becomes an owner of the note, other can repurchase it with a new price.</p>
+                <br>
+        	    <br>
+	          	<ul style="margin: 0 0 0 50px">
+            		<li class="ul-li-work">2.5x upto 0.05 ETH - 5% fee</li>
+    	        	<li class="ul-li-work">2x upto 0.5 ETH - 5% fee</li>
+	    	        <li class="ul-li-work">1.66x upto 5 ETH - 4% fee</li>
+    	    	    <li class="ul-li-work">1.43x upto 50 ETH - 3% fee</li>
+        	    	<li class="ul-li-work">1.25x from 50 ETH - 2% fee</li>
+          		</ul>
+        </div>
+    </div>-->
+
+	<div class="b-popup" id="popup">
+    	<div class="b-popup-content">
+			<br>
+			<div align="center" style="width: 100%">
+             	<p style="width: 60%; text-align: center;">The price of each note increases with each transaction. When one becomes an owner of the note, other can repurchase it with a new price.</p>
+                <br>
+            	<br>
+    	        <ul style="width: 50%; text-align: left;">
+                	<li class="ul-li-work">2.5x upto 0.05 ETH - 5% fee</li>
+    	            <li class="ul-li-work">2x upto 0.5 ETH - 5% fee</li>
+	    	        <li class="ul-li-work">1.66x upto 5 ETH - 4% fee</li>
+    	    	    <li class="ul-li-work">1.43x upto 50 ETH - 3% fee</li>
+            	  	<li class="ul-li-work">1.25x from 50 ETH - 2% fee</li>
+                </ul>
+			</div>
+	        <input type="button" value="OK" class="close-popup">
+        </div>
+    </div>
+
+    <div class="b-popup" id="popup1">
+        <div class="b-popup-content">
+            <input type="button" value="SET" class="close-popup">
+				<input id="new-nick" type="text">
+        </div>
+    </div>
+
+    <div id="info-popups">
+    </div>
+
+</body>
+</html>

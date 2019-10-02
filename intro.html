@@ -1,0 +1,218 @@
+<!doctype html>
+<html>
+  <meta name="viewport" content="width=device-width, initial-scale=0.7">
+
+  <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js" ></script>
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
+    <script type="text/javascript" src="./js/introjs.js"></script>
+    <link rel="stylesheet" media="screen" href="./css/stylep.css" type="text/css">
+    <link rel="stylesheet" href="./css/cstyle.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="./css/Animate.css" type="text/css" media="screen">
+	<link rel="shortcut icon" href="./favicon-black.png"/>
+	<title>CryptoNumismat</title>
+    <script type="text/javascript">
+        document.ondragstart = noselect;
+        document.onselectstart = noselect;
+        document.oncontextmenu = noselect;
+
+        function noselect() {return false;}
+    </script>
+  </head>
+
+<body id="c-body">
+  <div id="particles-js"></div>
+  <script src="particles.js"></script>
+  <script src="app.js"></script>
+  <script src="stats.js"></script>
+	<a target="_blank" href="Bounty.html"><input type="button" value="Bounty" class="click-on-bounty" id="button-every"></a>
+<!--<div id="change-nick">
+	    <a href="javascript:PopUpShowF(1)">CHANGE NICK</a>
+    </div>-->
+
+    <div id="main-intro">
+        <div id="header-intro">
+            <div id="header-left" style="float: left">
+                <div id="Icon">
+                    <a href="intro.html"><img src="main-icon.png" id="img-header" alt="Didn't Download"></a>
+                </div>
+                <div id="header-name">Crypto Numismat</div>
+            </div>
+
+            <div id="header-right" style="float: right">
+                <div id="kek"><img src="Efir-colorless.png" id="img-header2" alt="Didn't Download"></div>
+                <input id="c-Nick-input"type="text" readonly>
+            </div>
+        </div>
+
+        <div id="center-intro">
+            <span style="font-size: 30px; color: #33f2e9">Become a true Blockchain Numismat!</span>
+            <br>
+            <span style="font-size: 22px; color: #33f2e9">Easy as Dollar</span>
+            <div id="into-main-button">
+              <input type="submit" onclick="location.href = './marketplace.html'" value="GET STARTED" id="button-style">
+            </div>
+        </div>
+    </div>
+
+
+
+<div id ="main-intro2">
+    <div id="content-main2">
+        <div id="content2" align="center">
+            <div class="c2" style="height: auto; vertical-align: top; text-align: left; padding: 10px 30px;">
+                <h3>Biggest Numismat on the Blockchain</h3>
+                <br>
+                CryptoNumismat is a game where you
+                <br>
+                can buy all over the world
+                currencies as SmartContracts.
+                <br>
+                <br>
+                Own assets that nobody can duplicate or
+                <br>
+                destroy to become the Greatest and the Richest Numismat!
+            </div>
+            <div class="c2 media-img">
+                <img src="./images2/intro/BTC-on-Dollars3.jpg" class="intro-content-img" alt="Didn't Download">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id ="main-intro3">
+    <div id="content-main3">
+        <div id="content3" align="center">
+          <div class="c3 media-img">
+              <img src="./images2/intro/bitcoin-money.jpg" class="intro-content-img" alt="Didn't Download">
+          </div>
+            <div class="c3" style="height: auto; vertical-align: top; text-align: left; padding: 10px 40px;">
+                <h3>Friendly fees</h3>
+                <br>
+                We take from 5% to 2% fees only
+                <br>
+                as the value of the SmartContract (note) increases.
+                <br>
+                <br>
+                You can learn more by clicking <a href="javascript:PopUpShowF(0)">'How it works'</a>.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id ="main-intro4">
+    <div id="content-main4">
+        <div id="content4" align="center">
+            <div class="c4" style="height: auto; vertical-align: top; text-align: left; padding: 10px 30px;">
+                <h3>Double Profit or What is United?</h3>
+                <br>
+                There are two types of Notes avaliable: Common and United.
+                <br>
+                <br>
+                Commons are basic collectable Notes for
+                <br>
+				holding and getting profit from reselling.
+                <br>
+                <br>
+                United ones are also collectable,
+                <br>
+                furthemore, the Owner of the United Note receives a percentage
+                <br>
+                from each transaction that occurred with it's Commons.
+            </div>
+            <div class="c4 media-img">
+                <img src="./images2/intro/Notes-Bo.png" class="intro-content-img" alt="Didn't Download">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="c-site">
+	<div id="c-footer">
+    	<a target="_blank" href="https://discord.gg/WMuAPFW" class="footer-staff">DISCORD</a>
+	    <span id="gmail" class="footer-staff">cryptonumismat@gmail.com</span>
+	    <a target="_blank" href="https://etherscan.io/address/0xe22f686f95d6859a8b68f9f186d5c06256bb3407" class="footer-staff">Smart Contract</a>
+        <br>
+	    <a target="_blank" href="https://web.telegram.org/#/im?p=@CryptoNumismatGroup" class="footer-staff">TELEGRAM GROUP</a>
+    	    <a target="_blank" href="https://web.telegram.org/#/im?p=@CryptoNumismat" class="footer-staff">TELEGRAM CHANNEL</a>
+        <br>
+	    <a href="#" id="c-footer-href">Crypto Numismat<a>
+	</div>
+</div>
+
+<script>
+	$(window).scroll(function()
+	{
+		$('.intro-content-img').each(function()
+		{
+			var imagePos = $(this).offset().top + $(this).outerHeight();
+			var topOfWindow = $(window).scrollTop() + $(window).height();
+			if (imagePos < topOfWindow)
+			{
+		 	   $(this).addClass('animated fadeInUp');
+			}
+		});
+	});
+</script>
+            <div class="c-popup" id="c-popup(0)">
+                <div class="c-popup-content">
+		    	        <br>
+						<div align="center" style="width: 100%">
+                        	<p style="width: 60%; text-align: center;">The price of each note increases with each transaction. When one becomes an owner of the note, other can repurchase it with a new price.</p>
+                        <br>
+            	        <br>
+    	              	<ul style="width: 50%; text-align: left;">
+                    		<li class="c-ul-li-work">2.5x upto 0.05 ETH - 5% fee</li>
+    	                	<li class="c-ul-li-work">2x upto 0.5 ETH - 5% fee</li>
+	    	                <li class="c-ul-li-work">1.66x upto 5 ETH - 4% fee</li>
+    	    	            <li class="c-ul-li-work">1.43x upto 50 ETH - 3% fee</li>
+            	    	    <li class="c-ul-li-work">1.25x from 50 ETH - 2% fee</li>
+                  		</ul>
+					</div>
+	                <input type="button" value="OK" class="c-close-popup">
+                </div>
+            </div>
+
+			<div class="c-popup" id="c-popup(1)">
+                <div class="bounty-popup-content">
+					<br>
+					<div align="center" style="width: 100%">
+						<br>
+						<br>
+						<br>
+						<a target="_blank" href="Bounty.html">
+                       		<h1 class="click-on-bounty" style="width: 80%; text-align: center;"><span style="text-decoration: underline">Join</span> our Bounty Program!</h1>
+						</a>
+					</div>
+	                <input type="button" value="Close" class="c-close-popup">
+                </div>
+            </div>
+
+	<style>
+		@media (max-width: 1000px) {
+		    .c-popup-content{
+				width: 400px;
+    			margin: 28% auto 0px auto;
+				font-size: 15px;
+			}
+		}
+		
+		@media (max-width: 1000px) {
+		    .bounty-popup-content{
+				width: 400px;
+    			margin: 35% auto 0px auto;
+				font-size: 15px;
+			}
+		}
+
+		@media (max-width: 500px) {
+		    .media-img {
+				min-width: 400px;
+			}
+		}
+	</style>
+
+</body>
+</html>
